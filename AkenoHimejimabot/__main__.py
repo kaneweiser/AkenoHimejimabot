@@ -62,8 +62,8 @@ You can find my list of available commands with /help.
 
 HELP_STRINGS = """
 Oh my! I *{}*, posseses the power of fallen angels!  
-If you want to take advantage of my abilities to make your group better, provide me the sacred gear of *ADMIN* rights in your group. 
-
+If you want to take advantage of my abilities to make your group better,
+provide me the sacred gear of *ADMIN* rights in your group. 
 Hope I will serve you at my best!
 
 {}'s commands available:

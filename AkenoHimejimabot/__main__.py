@@ -52,25 +52,18 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-Hi {}, my name is {}!
-I am an Anime themed group management bot.
-Build by weebs for weebs, I specialize in managing anime and similar themed groups.
-You can find my list of available commands with /help.
+Ara Ara... {}, I am Rias's queen in command {}!
+
+It will be pleasure for me to serve your chat 💍
 """
 
 HELP_STRINGS = """
-Hey there! My name is *{}*.
-I'm a Hero For Fun and help admins manage their groups with One Punch! Have a look at the following for an idea of some of \
-the things I can help you with.
-
-*Main* commands available:
- • /help: PM's you this message.
- • /help <module name>: PM's you info about that module.
- • /donate: information on how to donate!
- • /settings:
-   • in PM: will send you your settings for all supported modules.
-   • in a group: will redirect you to pm, with all that chat's settings.
-
+『Here's the commands for *{}*.』
+ 🦋 /help: PM's you this message.
+ 🦋 /help <module name>: PM's you info about that module.
+ 🦋 /donate: information on how to donate!
+ 🦋 /settings: will send you your settings for all supported modules.
+  
 
 {}
 And the following:
@@ -78,10 +71,9 @@ And the following:
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-SAITAMA_IMG = "https://telegra.ph/file/46e6d9dfcb3eb9eae95d9.jpg"
+SAITAMA_IMG = "https://telegra.ph/file/4144c03f394bf8452bde3.gif"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
-Saitama is hosted on one of Kaizoku's Servers and doesn't require any donations as of now but \
 You can donate to the original writer of the Base code, Paul
 There are two ways of supporting him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
 
@@ -144,7 +136,7 @@ def send_help(chat_id, text, keyboard=None):
         disable_web_page_preview=True,
         reply_markup=keyboard)
 
-
+AKENOPINGIMG = 
 @run_async
 def test(update: Update, context: CallbackContext):
     # pprint(eval(str(update)))
@@ -201,27 +193,23 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [[
                         InlineKeyboardButton(
-                            text="☑️ Add Saitama to your group",
+                            text="💍Summon me in your chat💍",
                             url="t.me/{}?startgroup=true".format(
                                 context.bot.username))
                     ],
                      [
                          InlineKeyboardButton(
-                             text="🚑 Support Group",
+                             text="🦋 Repo 🦋",
+                             url=f"https://github.com/Rias_Gr3m0ry/AkenoHimejimabot"),
+                         InlineKeyboardButton(
+                             text="🦋 Support 🦋",
                              url=f"https://t.me/{SUPPORT_CHAT}"),
-                         InlineKeyboardButton(
-                             text="🔔 Updates Channel",
-                             url="https://t.me/OnePunchUpdates")
+
                      ],
                      [
-                         InlineKeyboardButton(
-                             text="🧾 Getting started guide",
-                             url="https://t.me/OnePunchUpdates/29")
-                     ],
-                     [
-                         InlineKeyboardButton(
-                             text="🗄 Source code",
-                             url="https://github.com/Rias_Gr3m0ry/AkenoHimejimabot")
+                             InlineKeyboardButton(
+                             text="❋ Help ❋",
+                             url="https://t.me/{}?start=help")
                      ]]))
     else:
         update.effective_message.reply_text(

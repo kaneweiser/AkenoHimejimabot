@@ -1,11 +1,11 @@
-![Akeno](https://im3.ezgif.com/tmp/ezgif-3-a9d485eaf3cd.gif)
+
 
 
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source-200x33.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 # Akeno Himejima Bot 
 
-
+![Akeno](https://im3.ezgif.com/tmp/ezgif-3-a9d485eaf3cd.gif)
 🦋 A modular Telegram Python bot made with [Saitama](https://github.com/AnimeKaizoku/SaitamaRobot) as a base. 
 🦋 Can be found on telegram as [AkenoHimejimaChatbot](https://t.me/AkenoHimejimaChatbot).
 🦋 The Support group can be reached out to at [Support group](https://t.me/akenosupport)

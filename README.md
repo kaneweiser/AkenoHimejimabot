@@ -3,7 +3,7 @@
 
 
 # Akeno Himejima Bot 
-![Akeno](https://im3.ezgif.com/tmp/ezgif-3-a9d485eaf3cd.gif)
+
 
 
 

@@ -71,7 +71,8 @@ And the following:
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-SAITAMA_IMG = "https://telegra.ph/file/4144c03f394bf8452bde3.gif"
+AKENOIMG = "https://telegra.ph/file/4144c03f394bf8452bde3.gif"
+AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
 You can donate to the original writer of the Base code, Paul
@@ -136,7 +137,7 @@ def send_help(chat_id, text, keyboard=None):
         disable_web_page_preview=True,
         reply_markup=keyboard)
 
-AKENOPINGIMG = 
+
 @run_async
 def test(update: Update, context: CallbackContext):
     # pprint(eval(str(update)))
@@ -184,7 +185,7 @@ def start(update: Update, context: CallbackContext):
         else:
             first_name = update.effective_user.first_name
             update.effective_message.reply_photo(
-                SAITAMA_IMG,
+                AKENOIMG,
                 PM_START_TEXT.format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name)),
@@ -212,9 +213,15 @@ def start(update: Update, context: CallbackContext):
                              url="https://t.me/{}?start=help")
                      ]]))
     else:
+  
+        update.effective_message.reply_photo(
+                AKENOPINGIMG)
         update.effective_message.reply_text(
-            "I'm online!\n<b>Up since:</b> <code>{}</code>".format(uptime),
+            "Ara Ara! \n<b>I am awake! since:</b> <code>{}</code>".format(uptime),
             parse_mode=ParseMode.HTML)
+                    
+          
+
 
 
 # for test purposes
@@ -564,7 +571,7 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Using long polling.")
+        LOGGER.info("Using long polling. Ara Ara uhuhuhuh")
         updater.start_polling(timeout=15, read_latency=4, clean=True)
 
     if len(argv) not in (1, 3, 4):

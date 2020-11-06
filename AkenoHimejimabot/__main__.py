@@ -52,9 +52,8 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-Ara Ara... {}, I am Rias's queen in command {}!
-
-It will be pleasure for me to serve your chat 💍
+*Ara Ara...* {}, I am {}!
+It will be pleasure for me to serve your chat  🤍
 """
 
 HELP_STRINGS = """
@@ -63,8 +62,6 @@ HELP_STRINGS = """
  🦋 /help <module name>: PM's you info about that module.
  🦋 /donate: information on how to donate!
  🦋 /settings: will send you your settings for all supported modules.
-  
-
 {}
 And the following:
 """.format(
@@ -184,7 +181,7 @@ def start(update: Update, context: CallbackContext):
 
         else:
             first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(
+            update.effective_message.reply_video(
                 AKENOIMG,
                 PM_START_TEXT.format(
                     escape_markdown(first_name),
@@ -194,7 +191,7 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [[
                         InlineKeyboardButton(
-                            text="💍Summon me in your chat💍",
+                            text="💍 Summon me in your chat 💍",
                             url="t.me/{}?startgroup=true".format(
                                 context.bot.username))
                     ],
@@ -210,11 +207,11 @@ def start(update: Update, context: CallbackContext):
                      [
                              InlineKeyboardButton(
                              text="❋ Help ❋",
-                             url="https://t.me/{}?start=help")
+                             url="https://t.me/AkenoHimejimaChatBot?start=help")
                      ]]))
     else:
   
-        update.effective_message.reply_photo(
+        update.effective_message.reply_video(
                 AKENOPINGIMG)
         update.effective_message.reply_text(
             "Ara Ara! \n<b>I am awake! since:</b> <code>{}</code>".format(uptime),

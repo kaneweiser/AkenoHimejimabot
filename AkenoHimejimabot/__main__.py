@@ -183,8 +183,6 @@ def start(update: Update, context: CallbackContext):
             first_name = update.effective_user.first_name
             update.effective_message.reply_video(
                 AKENOIMG,
-            update.effective_message.reply_text(
-            "*Ara Ara...* {}, I am {}! \n It will be pleasure for me to serve your chat  🤍")
                 PM_START_TEXT.format(
                     escape_markdown(first_name),
                     escape_markdown(context.bot.first_name)),

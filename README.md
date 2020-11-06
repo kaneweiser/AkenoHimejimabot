@@ -5,9 +5,15 @@
 
 # Akeno Himejima Bot 
 
-![Akeno](https://im3.ezgif.com/tmp/ezgif-3-a9d485eaf3cd.gif)
+![Akeno](https://im3.ezgif.com/tmp/ezgif-3-a9d485eaf3cd.gif
+
+
 🦋 A modular Telegram Python bot made with [Saitama](https://github.com/AnimeKaizoku/SaitamaRobot) as a base. 
+
+
 🦋 Can be found on telegram as [AkenoHimejimaChatbot](https://t.me/AkenoHimejimaChatbot).
+
+
 🦋 The Support group can be reached out to at [Support group](https://t.me/akenosupport)
 
 ## How to setup/deploy.

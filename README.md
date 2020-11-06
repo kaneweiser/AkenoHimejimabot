@@ -1,11 +1,11 @@
 
-
+[Akeno](https://telegra.ph/file/0b32f717cb86ee6272d35.jpg)
 
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source-200x33.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 # Akeno Himejima Bot 
 
-![Akeno](https://im3.ezgif.com/tmp/ezgif-3-a9d485eaf3cd.gif
+![Akeno](https://im3.ezgif.com/tmp/ezgif-3-a9d485eaf3cd.gif)
 
 
 🦋 A modular Telegram Python bot made with [Saitama](https://github.com/AnimeKaizoku/SaitamaRobot) as a base. 

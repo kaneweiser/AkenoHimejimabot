@@ -225,22 +225,22 @@ def info(update: Update, context: CallbackContext):
         return
 
     rep = message.reply_text(
-        "<code>Appraising...</code>", parse_mode=ParseMode.HTML)
+        "<code>Ara Ara! fetching user info. . .</code>", parse_mode=ParseMode.HTML)
 
-    text = (f"╒═══「<b> Appraisal results:</b> 」\n"
+    text = (f"🦋 <b>Here what I found!:</b> 🦋\n"
             f"ID: <code>{user.id}</code>\n"
-            f"First Name: {html.escape(user.first_name)}")
+            f"🦋First Name: {html.escape(user.first_name)}")
 
     if user.last_name:
-        text += f"\nLast Name: {html.escape(user.last_name)}"
+        text += f"\n🦋Last Name: {html.escape(user.last_name)}"
 
     if user.username:
-        text += f"\nUsername: @{html.escape(user.username)}"
+        text += f"\n🦋Username: @{html.escape(user.username)}"
 
-    text += f"\nPermalink: {mention_html(user.id, 'link')}"
+    text += f"\n🦋Permalink: {mention_html(user.id, 'link')}"
 
     if chat.type != "private" and user_id != bot.id:
-        _stext = "\nPresence: <code>{}</code>"
+        _stext = "\n🦋Presence: <code>{}</code>"
 
         afk_st = is_afk(user.id)
         if afk_st:
@@ -272,22 +272,22 @@ def info(update: Update, context: CallbackContext):
     disaster_level_present = False
 
     if user.id == OWNER_ID:
-        text += "\n\nThe Disaster level of this person is 'God'."
+        text += "\n\nOh my! Rias-sama you alright?."
         disaster_level_present = True
     elif user.id in DEV_USERS:
-        text += "\n\nThis user is member of 'Hero Association'."
+        text += "\n\nRelative of the Gremory family."
         disaster_level_present = True
     elif user.id in DRAGONS:
-        text += "\n\nThe Disaster level of this person is 'Dragon'."
+        text += "\n\nIssei-kun your sacred gear looks nice!."
         disaster_level_present = True
     elif user.id in DEMONS:
-        text += "\n\nThe Disaster level of this person is 'Demon'."
+        text += "\n\nRias's servant [Devil]."
         disaster_level_present = True
     elif user.id in TIGERS:
-        text += "\n\nThe Disaster level of this person is 'Tiger'."
+        text += "\n\Oh my!, you are quite strong!."
         disaster_level_present = True
     elif user.id in WOLVES:
-        text += "\n\nThe Disaster level of this person is 'Wolf'."
+        text += "\n\nLow rank devil."
         disaster_level_present = True
 
     if disaster_level_present:
@@ -461,7 +461,7 @@ def set_about_bio(update: Update, context: CallbackContext):
 
         if user_id == bot.id and sender_id not in DEV_USERS:
             message.reply_text(
-                "Erm... yeah, I only trust Heroes Association to set my bio.")
+                "President Rias wants your location.")
             return
 
         text = message.text

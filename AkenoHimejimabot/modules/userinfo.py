@@ -227,7 +227,7 @@ def info(update: Update, context: CallbackContext):
     rep = message.reply_text(
         "<code>Ara Ara! fetching user info. . .</code>", parse_mode=ParseMode.HTML)
 
-    text = (f"🦋 <b>Here what I found!:</b> 🦋\n"
+    text = (f"🦋 <b>Heres what I found!:</b> 🦋\n"
             f"ID: <code>{user.id}</code>\n"
             f"🦋First Name: {html.escape(user.first_name)}")
 

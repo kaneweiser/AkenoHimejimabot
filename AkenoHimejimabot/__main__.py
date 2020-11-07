@@ -68,7 +68,7 @@ And the following:
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")
 
-AKENOIMG = "https://telegra.ph/file/4144c03f394bf8452bde3.gif"
+AKENOIMG = "https://telegra.ph/file/77e9231a97fa066836a55.mp4"
 AKENOPINGIMG = "https://telegra.ph/file/6cd255ca75a70c4ebe92d.gif"
 
 DONATE_STRING = """Heya, glad to hear you want to donate!
@@ -181,7 +181,7 @@ def start(update: Update, context: CallbackContext):
 
         else:
             first_name = update.effective_user.first_name
-            update.effective_message.reply_video(
+            update.effective_message.reply_animation(
                 AKENOIMG,
                 PM_START_TEXT.format(
                     escape_markdown(first_name),
@@ -204,17 +204,14 @@ def start(update: Update, context: CallbackContext):
                              url=f"https://t.me/{SUPPORT_CHAT}"),
 
                      ],
-                     [
-                             InlineKeyboardButton(
-                             text="❋ Help ❋",
-                             url="https://t.me/AkenoHimejimaChatBot?start=help")
-                     ]]))
+                    
+                     ]))
     else:
   
         update.effective_message.reply_video(
                 AKENOPINGIMG)
         update.effective_message.reply_text(
-            "Ara Ara! \n<b>I am awake! since:</b> <code>{}</code>".format(uptime),
+            "Ara Ara! \n<b>Queen in command! since:</b> <code>{}</code>".format(uptime),
             parse_mode=ParseMode.HTML)
                     
           
@@ -316,7 +313,7 @@ def get_help(update: Update, context: CallbackContext):
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
             update.effective_message.reply_text(
-                f"Contact me in PM to get help of {module.capitalize()}",
+                f"Ara Ara, come to my PM. {module.capitalize()}",
                 reply_markup=InlineKeyboardMarkup([[
                     InlineKeyboardButton(
                         text="Help",
@@ -325,7 +322,7 @@ def get_help(update: Update, context: CallbackContext):
                 ]]))
             return
         update.effective_message.reply_text(
-            "Contact me in PM to get the list of possible commands.",
+            "Ara Ara! come meet me in PM to get the list of possible commands.",
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton(
                     text="Help",

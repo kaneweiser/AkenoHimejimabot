@@ -210,7 +210,7 @@ __help__ = """
  • `/sanitize`*:* always use this before /pat or any contact
  • `/pat`*:* pats a user, or get patted
 """
-
+ARA_HANDLER = DisableAbleCommandHandler("ara", ara)
 SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap)

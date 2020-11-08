@@ -28,3 +28,6 @@ telethon
 spamwatch
 alphabet_detector
 pyrate-limiter
+nekos.py
+pymongo
+dnspython

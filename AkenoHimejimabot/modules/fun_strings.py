@@ -1,3 +1,7 @@
+ARAGIFS = [
+         'CgACAgUAAx0CTCs8lgABAg1KX6e6iLkD3UVmuqDXJKWg8C1dljwAArgBAAK0pThVvwOSjYhlMsQeBA'
+            ]
+
 RUN_STRINGS = (
     "Now you see me, now you don't."
     "ε=ε=ε=ε=┌(;￣▽￣)┘",

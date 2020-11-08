@@ -1,6 +1,7 @@
 ARAGIFS = [
-         'CgACAgUAAx0CTCs8lgABAg1KX6e6iLkD3UVmuqDXJKWg8C1dljwAArgBAAK0pThVvwOSjYhlMsQeBA'
-            ]
+         'CgACAgUAAx0CTCs8lgABAg1KX6e6iLkD3UVmuqDXJKWg8C1dljwAArgBAAK0pThVvwOSjYhlMsQeBA',
+         'CgACAgUAAx0CTCs8lgABAg8eX6fCo-C_5jepnqtlEljgbNuXbnsAAtABAAL8LUFVgFSPB8jG874eBA'
+          ]
 
 RUN_STRINGS = (
     "Now you see me, now you don't."

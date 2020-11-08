@@ -121,10 +121,10 @@ def wallpaper(update, context):
 
 
 @run_async
- def tickle(update, context):
+def tickle(update, context):
      msg = update.effective_message
      target = "tickle"
-    msg.reply_video(nekos.img(target))
+     msg.reply_video(nekos.img(target))
 
 
 #@run_async

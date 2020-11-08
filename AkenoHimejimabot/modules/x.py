@@ -16,7 +16,7 @@ def is_user_in_chat(chat: Chat, user_id: int) -> bool:
 
 
 @run_async
-def +neko(update, context):
+def neko(update, context):
     msg = update.effective_message
     target = "neko"
     msg.reply_photo(nekos.img(target))

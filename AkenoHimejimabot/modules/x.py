@@ -414,7 +414,7 @@ def baka(update, context):
 
 
 #LEWDKEMO_HANDLER = CommandHandler("lewdkemo", lewdkemo)
-NEKO_HANDLER = CommandHandler("neko", neko)
+NEKO_HANDLER = CommandHandler("+neko", neko)
 #FEET_HANDLER = CommandHandler("feet", feet)
 #YURI_HANDLER = CommandHandler("yuri", yuri)
 #TRAP_HANDLER = CommandHandler("trap", trap)

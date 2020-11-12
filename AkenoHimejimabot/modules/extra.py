@@ -266,7 +266,8 @@ __command_list__ = [
     #"corona",
     "tts",
     #"ud",
-    #"app"]
+    #"app"
+]
 __handlers__ = [
     #CONVERTER_HANDLER,
     #WALL_HANDLER,

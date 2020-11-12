@@ -31,3 +31,4 @@ pyrate-limiter
 nekos.py
 pymongo
 dnspython
+spotdl

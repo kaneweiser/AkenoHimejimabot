@@ -69,18 +69,6 @@ def app(update: Update, _):
     progress_message.delete()
 
 
-@run_async
-def ud(update: Update, _):
-    message = update.effective_message
-    text = message.text[len('/ud '):]
-    results = requests.get(
-        f'http://api.urbandictionary.com/v0/define?term={text}').json()
-    try:
-        reply_text = f'*{text}*\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_\n\n_{results["list"][0]["author"]}_'
-    except Exception:
-        reply_text = "No results found."
-    message.reply_text(reply_text, parse_mode=ParseMode.MARKDOWN)
-
 
 @run_async
 def tts(context: CallbackContext, update: Update):
@@ -333,85 +321,6 @@ def generate_time(to_find: str, findtype: List[str]) -> str:
     return result
 
 
-@run_async
-def convert(update: Update, _):
-    args = update.effective_message.text.split(" ", 3)
-    if len(args) > 1:
-
-        orig_cur_amount = float(args[1])
-
-        try:
-            orig_cur = args[2].upper()
-        except IndexError:
-            update.effective_message.reply_text(
-                "You forgot to mention the currency code.")
-            return
-
-        try:
-            new_cur = args[3].upper()
-        except IndexError:
-            update.effective_message.reply_text(
-                "You forgot to mention the currency code to convert into.")
-            return
-
-        request_url = (
-            f"https://www.alphavantage.co/query"
-            f"?function=CURRENCY_EXCHANGE_RATE"
-            f"&from_currency={orig_cur}"
-            f"&to_currency={new_cur}"
-            f"&apikey={CASH_API_KEY}")
-        response = requests.get(request_url).json()
-        try:
-            current_rate = float(
-                response['Realtime Currency Exchange Rate']['5. Exchange Rate'])
-        except KeyError:
-            update.effective_message.reply_text("Currency Not Supported.")
-            return
-        new_cur_amount = round(orig_cur_amount * current_rate, 5)
-        update.effective_message.reply_text(
-            f"{orig_cur_amount} {orig_cur} = {new_cur_amount} {new_cur}")
-    else:
-        update.effective_message.reply_text(__help__)
-
-
-@run_async
-def wall(update: Update, context: CallbackContext):
-    args = context.args
-    msg = update.effective_message
-    msg_id = update.effective_message.message_id
-    query = " ".join(args)
-    if query:
-        caption = query
-        term = query.replace(" ", "%20")
-        json_rep = requests.get(
-            f"https://wall.alphacoders.com/api2.0/get.php?auth={WALL_API}&method=search&term={term}").json()
-        if json_rep.get("success"):
-            wallpapers = json_rep.get("wallpapers")
-            if wallpapers:
-                index = randint(0, len(wallpapers) - 1)  # Choose random index
-                wallpaper = wallpapers[index]
-                wallpaper = wallpaper.get("url_image")
-                wallpaper = wallpaper.replace("\\", "")
-                chat_id = update.effective_chat.id
-                context.bot.send_photo(chat_id, photo=wallpaper, caption='Preview',
-                            reply_to_message_id=msg_id, timeout=60)
-                context.bot.send_document(
-                    chat_id,
-                    document=wallpaper,
-                    filename='wallpaper',
-                    caption=caption,
-                    reply_to_message_id=msg_id,
-                    timeout=60)
-
-            else:
-                msg.reply_text("No results found! Refine your search.")
-                return
-        else:
-            msg.reply_text("An error occurred! Report this @LyndaEagleSupport")
-    else:
-        msg.reply_text("Please enter a query!")
-        return
-
 
 @run_async
 def covid(update: Update, context: CallbackContext):
@@ -461,10 +370,10 @@ returns what you're scrobbling on last.fm.
 finds an app in playstore for you
 """
 APP_HANDLER = DisableAbleCommandHandler("app", app)
-UD_HANDLER = DisableAbleCommandHandler("ud", ud)
+#UD_HANDLER = DisableAbleCommandHandler("ud", ud)
 COVID_HANDLER = DisableAbleCommandHandler(["covid", "corona"], covid)
-WALL_HANDLER = DisableAbleCommandHandler("wall", wall, pass_args=True)
-CONVERTER_HANDLER = DisableAbleCommandHandler('cash', convert)
+#WALL_HANDLER = DisableAbleCommandHandler("wall", wall, pass_args=True)
+#CONVERTER_HANDLER = DisableAbleCommandHandler('cash', convert)
 REVERSE_HANDLER = DisableAbleCommandHandler(
     "reverse", reverse, pass_args=True, admin_ok=True)
 TTS_HANDLER = DisableAbleCommandHandler('tts', tts, pass_args=True)
@@ -472,26 +381,26 @@ TTS_HANDLER = DisableAbleCommandHandler('tts', tts, pass_args=True)
 dispatcher.add_handler(APP_HANDLER)
 dispatcher.add_handler(COVID_HANDLER)
 dispatcher.add_handler(REVERSE_HANDLER)
-dispatcher.add_handler(WALL_HANDLER)
-dispatcher.add_handler(CONVERTER_HANDLER)
+#dispatcher.add_handler(WALL_HANDLER)
+#dispatcher.add_handler(CONVERTER_HANDLER)
 dispatcher.add_handler(TTS_HANDLER)
-dispatcher.add_handler(UD_HANDLER)
+#dispatcher.add_handler(UD_HANDLER)
 
 __mod_name__ = "Extras"
 __command_list__ = [
-    "cash",
-    "wall",
+    #"cash",
+    #"wall",
     "reverse",
     "covid",
     "corona",
     "tts",
-    "ud",
+    #"ud",
     "app"]
 __handlers__ = [
-    CONVERTER_HANDLER,
-    WALL_HANDLER,
+    #CONVERTER_HANDLER,
+    #WALL_HANDLER,
     REVERSE_HANDLER,
     COVID_HANDLER,
     TTS_HANDLER,
-    UD_HANDLER,
+    #UD_HANDLER,
     APP_HANDLER]

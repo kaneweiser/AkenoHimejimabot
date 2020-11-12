@@ -20,55 +20,6 @@ useragent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML
 opener.addheaders = [('User-agent', useragent)]
 
 
-@run_async
-def app(update: Update, _):
-    message = update.effective_message
-    try:
-        progress_message = update.effective_message.reply_text(
-            "Searching.... ")
-        app_name = message.text[len('/app '):]
-        remove_space = app_name.split(' ')
-        final_name = '+'.join(remove_space)
-        page = requests.get(
-            f"https://play.google.com/store/search?q={final_name}&c=apps")
-        soup = BeautifulSoup(page.content, 'lxml', from_encoding='utf-8')
-        results = soup.findAll("div", "ZmHEEd")
-        app_name = results[0].findNext(
-            'div', 'Vpfmgd').findNext(
-            'div', 'WsMG1c nnK0zc').text
-        app_dev = results[0].findNext(
-            'div', 'Vpfmgd').findNext(
-            'div', 'KoLSrc').text
-        app_dev_link = "https://play.google.com" + results[0].findNext(
-            'div', 'Vpfmgd').findNext('a', 'mnKHRc')['href']
-        app_rating = results[0].findNext('div', 'Vpfmgd').findNext(
-            'div', 'pf5lIe').find('div')['aria-label']
-        app_link = "https://play.google.com" + results[0].findNext(
-            'div', 'Vpfmgd').findNext('div', 'vU6FJ p63iDd').a['href']
-        app_icon = results[0].findNext(
-            'div', 'Vpfmgd').findNext(
-            'div', 'uzcko').img['data-src']
-        app_details = "<a href='" + app_icon + "'>📲&#8203;</a>"
-        app_details += " <b>" + app_name + "</b>"
-        app_details += "\n\n<code>Developer :</code> <a href='" + app_dev_link + "'>"
-        app_details += app_dev + "</a>"
-        app_details += "\n<code>Rating :</code> " + app_rating.replace(
-            "Rated ", "⭐️ ").replace(" out of ", "/").replace(
-                " stars", "", 1).replace(" stars", "⭐️").replace("five", "5")
-        app_details += "\n<code>Features :</code> <a href='" + \
-            app_link + "'>View in Play Store</a>"
-        message.reply_text(
-            app_details,
-            disable_web_page_preview=False,
-            parse_mode='html')
-    except IndexError:
-        message.reply_text(
-            "No result found in search. Please enter **Valid app name**")
-    except Exception as err:
-        message.reply_text(err)
-    progress_message.delete()
-
-
 
 @run_async
 def tts(context: CallbackContext, update: Update):
@@ -257,86 +208,6 @@ def ParseSauce(googleurl):
     return results
 
 
-def scam(imgspage, lim):
-    """Parse/Scrape the HTML code for the info we want."""
-    single = opener.open(imgspage).read()
-    decoded = single.decode('utf-8')
-    if int(lim) > 10:
-        lim = 10
-
-    imglinks = []
-    counter = 0
-
-    pattern = r'^,\[\"(.*[.png|.jpg|.jpeg])\",[0-9]+,[0-9]+\]$'
-    oboi = re.findall(pattern, decoded, re.I | re.M)
-
-    for imglink in oboi:
-        counter += 1
-        imglinks.append(imglink)
-        if counter >= int(lim):
-            break
-
-    return imglinks
-
-
-def generate_time(to_find: str, findtype: List[str]) -> str:
-    data = requests.get(
-        f"http://api.timezonedb.com/v2.1/list-time-zone"
-        f"?key={TIME_API_KEY}"
-        f"&format=json"
-        f"&fields=countryCode,countryName,zoneName,gmtOffset,timestamp,dst").json()
-
-    for zone in data["zones"]:
-        for eachtype in findtype:
-            if to_find in zone[eachtype].lower():
-                country_name = zone['countryName']
-                country_zone = zone['zoneName']
-                country_code = zone['countryCode']
-
-                daylight_saving = "Yes" if zone['dst'] == 1 else "No"
-                date_fmt = r"%d-%m-%Y"
-                time_fmt = r"%H:%M:%S"
-                day_fmt = r"%A"
-                gmt_offset = zone['gmtOffset']
-                timestamp = datetime.datetime.now(
-                    datetime.timezone.utc) + datetime.timedelta(seconds=gmt_offset)
-                current_date = timestamp.strftime(date_fmt)
-                current_time = timestamp.strftime(time_fmt)
-                current_day = timestamp.strftime(day_fmt)
-
-                break
-
-    try:
-        result = (
-            f"<b>Country :</b> <code>{country_name}</code>\n"
-            f"<b>Zone Name :</b> <code>{country_zone}</code>\n"
-            f"<b>Country Code :</b> <code>{country_code}</code>\n"
-            f"<b>Daylight saving :</b> <code>{daylight_saving}</code>\n"
-            f"<b>Day :</b> <code>{current_day}</code>\n"
-            f"<b>Current Time :</b> <code>{current_time}</code>\n"
-            f"<b>Current Date :</b> <code>{current_date}</code>")
-    except Exception:
-        result = None
-
-    return result
-
-
-
-@run_async
-def covid(update: Update, context: CallbackContext):
-    message = update.effective_message
-    text = message.text.split(' ', 1)
-    if len(text) == 1:
-        r = requests.get("https://corona.lmao.ninja/v2/all").json()
-        reply_text = f"**Global Totals** 🦠\nCases: {r['cases']:,}\nCases Today: {r['todayCases']:,}\nDeaths: {r['deaths']:,}\nDeaths Today: {r['todayDeaths']:,}\nRecovered: {r['recovered']:,}\nActive: {r['active']:,}\nCritical: {r['critical']:,}\nCases/Mil: {r['casesPerOneMillion']}\nDeaths/Mil: {r['deathsPerOneMillion']}"
-    else:
-        variabla = text[1]
-        r = requests.get(
-            f"https://corona.lmao.ninja/v2/countries/{variabla}").json()
-        reply_text = f"**Cases for {r['country']} 🦠**\nCases: {r['cases']:,}\nCases Today: {r['todayCases']:,}\nDeaths: {r['deaths']:,}\nDeaths Today: {r['todayDeaths']:,}\nRecovered: {r['recovered']:,}\nActive: {r['active']:,}\nCritical: {r['critical']:,}\nCases/Mil: {r['casesPerOneMillion']}\nDeaths/Mil: {r['deathsPerOneMillion']}"
-    message.reply_text(reply_text, parse_mode=ParseMode.MARKDOWN)
-
-
 __help__ = """
 ──「 *Corona:* 」──
 -> `/covid`
@@ -369,17 +240,17 @@ returns what you're scrobbling on last.fm.
 -> `/app` <app name>
 finds an app in playstore for you
 """
-APP_HANDLER = DisableAbleCommandHandler("app", app)
+#APP_HANDLER = DisableAbleCommandHandler("app", app)
 #UD_HANDLER = DisableAbleCommandHandler("ud", ud)
-COVID_HANDLER = DisableAbleCommandHandler(["covid", "corona"], covid)
+#COVID_HANDLER = DisableAbleCommandHandler(["covid", "corona"], covid)
 #WALL_HANDLER = DisableAbleCommandHandler("wall", wall, pass_args=True)
 #CONVERTER_HANDLER = DisableAbleCommandHandler('cash', convert)
 REVERSE_HANDLER = DisableAbleCommandHandler(
     "reverse", reverse, pass_args=True, admin_ok=True)
 TTS_HANDLER = DisableAbleCommandHandler('tts', tts, pass_args=True)
 
-dispatcher.add_handler(APP_HANDLER)
-dispatcher.add_handler(COVID_HANDLER)
+#dispatcher.add_handler(APP_HANDLER)
+#dispatcher.add_handler(COVID_HANDLER)
 dispatcher.add_handler(REVERSE_HANDLER)
 #dispatcher.add_handler(WALL_HANDLER)
 #dispatcher.add_handler(CONVERTER_HANDLER)
@@ -391,16 +262,16 @@ __command_list__ = [
     #"cash",
     #"wall",
     "reverse",
-    "covid",
-    "corona",
+    #"covid",
+    #"corona",
     "tts",
     #"ud",
-    "app"]
+    #"app"]
 __handlers__ = [
     #CONVERTER_HANDLER,
     #WALL_HANDLER,
     REVERSE_HANDLER,
-    COVID_HANDLER,
+    #COVID_HANDLER,
     TTS_HANDLER,
     #UD_HANDLER,
-    APP_HANDLER]
+    #APP_HANDLER]

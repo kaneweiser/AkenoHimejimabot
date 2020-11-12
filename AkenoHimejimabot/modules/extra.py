@@ -274,4 +274,5 @@ __handlers__ = [
     #COVID_HANDLER,
     TTS_HANDLER,
     #UD_HANDLER,
-    #APP_HANDLER]
+    #APP_HANDLER
+]

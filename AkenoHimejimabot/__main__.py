@@ -606,13 +606,6 @@ def main():
 
 updater.dispatcher.add_handler(MessageHandler(Filters.text, get_format))
 updater.dispatcher.add_handler(CallbackQueryHandler(download_choosen_format))
-
-
-    
-    
-    
-    
-    
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
         updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)

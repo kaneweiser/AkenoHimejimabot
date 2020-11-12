@@ -32,3 +32,4 @@ nekos.py
 pymongo
 dnspython
 spotdl
+gtts

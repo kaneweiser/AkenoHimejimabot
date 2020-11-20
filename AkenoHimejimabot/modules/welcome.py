@@ -60,7 +60,7 @@ ENUM_FUNC_MAP = {
 }
 
 VERIFIED_USER_WAITLIST = {}
-
+WELCOMEMUTEVIDEO = "https://telegra.ph/file/0d87b7c94ca2265e9782f.gif"
 
 # do not async
 def send(update, message, keyboard, backup_message):
@@ -354,8 +354,7 @@ def new_member(update: Update, context: CallbackContext):
                             }
                         })
                     new_join_mem = f"[{escape_markdown(new_mem.first_name)}](tg://user?id={user.id})"
-                    message = msg.reply_text(
-                        f"{new_join_mem}, click the button below to prove you're human.\nYou have 120 seconds.",
+                    message = msg.reply_video(WELCOMEMUTEVIDEO),
                         reply_markup=InlineKeyboardMarkup([{
                             InlineKeyboardButton(
                                 text="Yes, I'm human.",

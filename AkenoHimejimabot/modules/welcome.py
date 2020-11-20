@@ -382,7 +382,7 @@ def new_member(update: Update, context: CallbackContext):
                     job_queue.run_once(
                         partial(check_not_bot, new_mem, chat.id,
                                 message.message_id),
-                        120,
+                        480,
                         name="welcomemute",
                     )
 

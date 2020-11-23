@@ -228,7 +228,7 @@ def info(update: Update, context: CallbackContext):
         "<code>Ara Ara! fetching user info. . .</code>", parse_mode=ParseMode.HTML)
 
     text = (f"🦋 <b>Heres what I found!:</b> 🦋\n"
-            f"ID: <code>{user.id}</code>\n"
+            f"🦋ID: <code>{user.id}</code>\n"
             f"🦋First Name: {html.escape(user.first_name)}")
 
     if user.last_name:

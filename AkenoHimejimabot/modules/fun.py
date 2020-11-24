@@ -27,6 +27,15 @@ def ara(update: Update, context: CallbackContext):
     reply_animation = message.reply_to_message.reply_animation if message.reply_to_message else message.reply_animation
     reply_animation(
         random.choice(fun_strings.ARAGIFS), caption=f'*Ara Ara! {name}*')
+    
+    
+@run_async
+def kill(update: Update, context: CallbackContext):
+    message = update.effective_message
+    name = message.reply_to_message.from_user.first_name if message.reply_to_message else message.from_user.first_name
+    reply_animation = message.reply_to_message.reply_animation if message.reply_to_message else message.reply_animation
+    reply_animation(
+        random.choice(fun_strings.DEATHGIF), caption=f'Time to die! {name}*')  
 
 # ----------------------------
 
@@ -211,6 +220,7 @@ __help__ = """
  • `/pat`*:* pats a user, or get patted
 """
 ARA_HANDLER = DisableAbleCommandHandler("ara", ara)
+KILL_HANDLER = DisableAbleCommandHandler("kill", kill)
 SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
 SLAP_HANDLER = DisableAbleCommandHandler("slap", slap)
@@ -224,6 +234,7 @@ DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 
 dispatcher.add_handler(ARA_HANDLER)
+dispatcher.add_handler(KILL_HANDLER)
 dispatcher.add_handler(SANITIZE_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
@@ -239,10 +250,10 @@ dispatcher.add_handler(TABLE_HANDLER)
 __mod_name__ = "Fun"
 __command_list__ = [
     "runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide",
-    "table", "pat", "sanitize", "ara"
+    "table", "pat", "sanitize", "ara", "kill"
 ]
 __handlers__ = [
     RUNS_HANDLER, SLAP_HANDLER, PAT_HANDLER, ROLL_HANDLER, TOSS_HANDLER,
     SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER, DECIDE_HANDLER, TABLE_HANDLER,
-    SANITIZE_HANDLER, ARA_HANDLER
+    SANITIZE_HANDLER, ARA_HANDLER, KILL_HANDLER
 ]

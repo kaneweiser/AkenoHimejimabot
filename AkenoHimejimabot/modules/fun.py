@@ -205,6 +205,20 @@ def table(update: Update, context: CallbackContext):
 
 
 __help__ = """
+ • `/ara`*:* Ara Ara
+ • `/kill`*:* Kills
+ • `/neko`*:* sends random neko image
+ • `/hug`*:* sends random hug gif
+ • `/tickle`*:* sends random tickle gif
+ • `/feed`*:* sends random feed gif
+ • `/poke`*:* sends random poke gif
+ • `/waifu`*:* sends random waifu sticker/image
+ • `/kiss`*:* sends random kiss gif
+ • `/baka`*:* sends random baka gif
+ • `/smug`*:* sends random smug gif
+ • `/foxgirl`*:* sends random foxgirl image
+ • `/feed`*:* sends random feed gif
+ -------------------
  • `/runs`*:* reply a random string from an array of replies
  • `/slap`*:* slap a user, or get slapped if not a reply
  • `/shrug`*:* get shrug XD
@@ -218,6 +232,8 @@ __help__ = """
  • `/weebify <text>`*:* returns a weebified text
  • `/sanitize`*:* always use this before /pat or any contact
  • `/pat`*:* pats a user, or get patted
+ --------------------
+ • `/wall`*:* Usage- /wall <wallpaper name>. fetches wallpaper using wall alphacoders api.
 """
 ARA_HANDLER = DisableAbleCommandHandler("ara", ara)
 KILL_HANDLER = DisableAbleCommandHandler("kill", kill)

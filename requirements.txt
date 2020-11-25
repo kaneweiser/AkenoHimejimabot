@@ -33,3 +33,4 @@ pymongo
 dnspython
 spotdl
 gtts
+pandas

@@ -57,9 +57,9 @@ def no_longer_afk(update: Update, context: CallbackContext):
         firstname = update.effective_user.first_name
         try:
             options = [
-                '{} Ara Ara!', '{} Yōkoso!', '{} Rias missed you!',
-                '{} Why you came here?', '{} is wasting his time in this chat!', '{} Welcome back...Now pay 100$ or get banned.',
-                'Yamete...Yamete-kudasai {}-sama', 'Oh my! {} got no chills!!', '{} got a girlfriend! thats why he was afk.', '{} welcome to hell again.', '{} lawde online rehna seekh.', '{} Bruh you should delete your telegram account.', '{} Aye haye my love just arrived!', '{} Damn... I saw you were online.. reading the messages.. but u were afk.', '{} Yess.. lets start trashing the chat!', 'Spammer just arrived.. be ready everyone.. let me grab my ban-hammer!', 'Roses are red.. Violets are blue.. go f#ck yourself no one missed you!', '{} Please be gentle with me... ahh.. uff... omg it feels so good!'             
+                '{} Ara Ara!', '{} Yōkoso!', '{} welcome back.. no one missed you!!',
+                '{} why you came here?', '{} is wasting his time in this chat!', '{} welcome back...Now pay 100$ or get banned.',
+                'Yamete...Yamete-kudasai {}-sama', 'Oh my! {} got no chills!!', '{} got a girlfriend! thats why he was afk.', '{} welcome to hell again.', '{} lawde online rehna seekh.', '{} bruh you should delete your telegram account.', '{} aye haye my love just arrived!', '{} damn... I saw you were online.. reading the messages.. but u were afk.', '{} yess.. lets start trashing the chat!', 'Spammer just arrived.. be ready everyone.. let me grab my ban-hammer!', 'Roses are red.. Violets are blue.. go f#ck yourself no one missed you!', '{} please be gentle with me... ahh.. uff... omg it feels so good!'             
             ]
             chosen_option = random.choice(options)
             update.effective_message.reply_text(chosen_option.format(firstname))

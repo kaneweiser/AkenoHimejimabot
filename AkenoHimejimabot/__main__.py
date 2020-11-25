@@ -59,7 +59,7 @@ It will be pleasure for me to serve your chat  🤍
 """
 
 HELP_STRINGS = """
-『Here's the commands for *{}*.』
+『Here's the commands for *{}*』
  🦋 /help: PM's you this message.
  🦋 /help <module name>: PM's you info about that module.
  🦋 /donate: information on how to donate!
@@ -193,7 +193,7 @@ def start(update: Update, context: CallbackContext):
                 reply_markup=InlineKeyboardMarkup(
                     [[
                         InlineKeyboardButton(
-                            text="💍 Summon me in your chat 💍",
+                            text="💍  Summon me in your chat  💍",
                             url="t.me/{}?startgroup=true".format(
                                 context.bot.username))
                     ],

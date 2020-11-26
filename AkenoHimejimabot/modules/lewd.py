@@ -1,3 +1,7 @@
+# module credits:- https://github.com/Dank-del
+# This module is kanged from:- https://github.com/Dank-del/Chizuru
+# lewd.py
+
 import requests
 import nekos
 from PIL import Image

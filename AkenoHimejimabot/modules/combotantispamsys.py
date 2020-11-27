@@ -91,6 +91,7 @@ def getTimeSetting(update: Update, context: CallbackContext):
     return
 
 @run_async
+@user_admin
 def setTimeSetting(update, context) -> str:
     args = context.args
     chat = update.effective_chat

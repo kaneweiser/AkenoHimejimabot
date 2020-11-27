@@ -6,7 +6,7 @@ import AkenoHimejimabot.modules.helper_funcs.cas_api as cas
 
 from telegram import Message, Chat, Update, Bot, User, CallbackQuery, ChatMember, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, MessageEntity
 from telegram.error import BadRequest
-from AkenoHimejimabot import dispatcher, OWNER_ID, DEV_USERS, DRAGONS, DEMONS, TIGER_USERS, WOLVES, LOGGER
+from AkenoHimejimabot import dispatcher, OWNER_ID, DEV_USERS, DRAGONS, DEMONS, TIGERS, WOLVES, LOGGER
 from telegram.ext import MessageHandler, Filters, CommandHandler, run_async, CallbackQueryHandler
 from telegram.utils.helpers import mention_markdown, mention_html, escape_markdown
 

@@ -6,7 +6,7 @@ import AkenoHimejimabot.modules.helper_funcs.cas_api as cas
 
 from telegram import Message, Chat, Update, Bot, User, CallbackQuery, ChatMember, ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, MessageEntity
 from telegram.error import BadRequest
-from AkenoHimejimabot import dispatcher, OWNER_ID, DEV_USERS, SUDO_USERS, SUPPORT_USERS, TIGER_USERS, WHITELIST_USERS, LOGGER
+from AkenoHimejimabot import dispatcher, OWNER_ID, DEV_USERS, DRAGONS, DEMONS, TIGER_USERS, WOLVES, LOGGER
 from telegram.ext import MessageHandler, Filters, CommandHandler, run_async, CallbackQueryHandler
 from telegram.utils.helpers import mention_markdown, mention_html, escape_markdown
 
@@ -14,7 +14,7 @@ import AkenoHimejimabot.modules.sql.welcome_sql as sql
 import AkenoHimejimabot.modules.sql.global_bans_sql as gbansql
 import AkenoHimejimabot.modules.sql.users_sql as userssql
 
-from AkenoHimejimabot import dispatcher, OWNER_ID, LOGGER, SUDO_USERS, SUPPORT_USERS
+from AkenoHimejimabot import dispatcher, OWNER_ID, LOGGER, DRAGONS, DEMONS
 from AkenoHimejimabot.modules.helper_funcs.chat_status import user_admin, can_delete, is_user_ban_protected
 from AkenoHimejimabot.modules.helper_funcs.misc import build_keyboard, revert_buttons, send_to_list
 from AkenoHimejimabot.modules.helper_funcs.msg_types import get_welcome_type

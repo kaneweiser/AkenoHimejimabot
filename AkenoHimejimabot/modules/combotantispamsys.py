@@ -82,7 +82,7 @@ def get_current_setting(update: Update, context: CallbackContext):
 
 @run_async
 @user_admin
-def getTimeSetting(update: Update, context: CallbackContext)
+def getTimeSetting(update: Update, context: CallbackContext):
     chat = update.effective_chat
     msg = update.effective_message
     timeSetting = sql.getKickTime(chat.id)

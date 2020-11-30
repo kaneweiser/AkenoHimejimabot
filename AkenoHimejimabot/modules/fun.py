@@ -3,12 +3,12 @@ import random
 import time
 
 from telegram import ParseMode, Update, ChatPermissions
-from telegram.ext import CallbackContext, run_async
+from telegram.ext import CallbackContext, run_async, Filters, MessageHandler
 from telegram.error import BadRequest
 
 import AkenoHimejimabot.modules.fun_strings as fun_strings
 from AkenoHimejimabot import dispatcher
-from AkenoHimejimabot.modules.disable import DisableAbleCommandHandler
+from AkenoHimejimabot.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
 from AkenoHimejimabot.modules.helper_funcs.chat_status import (is_user_admin)
 from AkenoHimejimabot.modules.helper_funcs.extraction import extract_user
 

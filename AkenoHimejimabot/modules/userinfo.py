@@ -108,7 +108,7 @@ def hpmanager(user):
 
 def make_bar(per):
     done = min(round(per / 10), 10)
-    return "■" * done + "□" * (10 - done)
+    return "[■]" * done + "[□]" * (10 - done)
 
 
 @run_async
@@ -127,7 +127,7 @@ def get_id(update: Update, context: CallbackContext):
             user2 = message.reply_to_message.forward_from
 
             msg.reply_text(
-                f"<b>Telegram ID:</b>,"
+                f"<b>➢Telegram ID:</b>,"
                 f"• {html.escape(user2.first_name)} - <code>{user2.id}</code>.\n"
                 f"• {html.escape(user1.first_name)} - <code>{user1.id}</code>.",
                 parse_mode=ParseMode.HTML)
@@ -168,20 +168,20 @@ async def group_info(event) -> None:
             "Can't for some reason, maybe it is a private one or that I am banned there."
         )
         return
-    msg = f"**ID**: `{entity.id}`"
-    msg += f"\n**Title**: `{entity.title}`"
-    msg += f"\n**Datacenter**: `{entity.photo.dc_id}`"
-    msg += f"\n**Video PFP**: `{entity.photo.has_video}`"
-    msg += f"\n**Supergroup**: `{entity.megagroup}`"
-    msg += f"\n**Restricted**: `{entity.restricted}`"
-    msg += f"\n**Scam**: `{entity.scam}`"
-    msg += f"\n**Slowmode**: `{entity.slowmode_enabled}`"
+    msg = f"➢**ID**: `{entity.id}`"
+    msg += f"\n➢**Title**: `{entity.title}`"
+    msg += f"\n➢**Datacenter**: `{entity.photo.dc_id}`"
+    msg += f"\n➢**Video PFP**: `{entity.photo.has_video}`"
+    msg += f"\n➢**Supergroup**: `{entity.megagroup}`"
+    msg += f"\n➢**Restricted**: `{entity.restricted}`"
+    msg += f"\n➢**Scam**: `{entity.scam}`"
+    msg += f"\n➢**Slowmode**: `{entity.slowmode_enabled}`"
     if entity.username:
-        msg += f"\n**Username**: {entity.username}"
-    msg += "\n\n**Member Stats:**"
-    msg += f"\n`Admins:` `{len(totallist)}`"
-    msg += f"\n`Users`: `{totallist.total}`"
-    msg += "\n\n**Admins List:**"
+        msg += f"\n➢**Username**: {entity.username}"
+    msg += "\n\n➢**Member Stats:**"
+    msg += f"\n➢`Admins:` `{len(totallist)}`"
+    msg += f"\n➢`Users`: `{totallist.total}`"
+    msg += "\n\n➢**Admins List:**"
     for x in totallist:
         msg += f"\n• [{x.id}](tg://user?id={x.id})"
     msg += f"\n\n**Description**:\n`{ch_full.full_chat.about}`"
@@ -193,7 +193,7 @@ def gifid(update: Update, context: CallbackContext):
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.animation:
         update.effective_message.reply_text(
-            f"Gif ID:\n<code>{msg.reply_to_message.animation.file_id}</code>",
+            f"➢Gif ID:\n<code>{msg.reply_to_message.animation.file_id}</code>",
             parse_mode=ParseMode.HTML)
     else:
         update.effective_message.reply_text(
@@ -272,26 +272,26 @@ def info(update: Update, context: CallbackContext):
     disaster_level_present = False
 
     if user.id == OWNER_ID:
-        text += "\n\nOh my! Rias-sama you alright?."
+        text += "\n\n👑 *President Rias* 👑."
         disaster_level_present = True
     elif user.id in DEV_USERS:
-        text += "\n\nRelative of the Gremory family."
+        text += "\n\n*OCR member*"
         disaster_level_present = True
     elif user.id in DRAGONS:
-        text += "\n\nIssei-kun your sacred gear looks nice!."
+        text += "\n\n*Dragon*"
         disaster_level_present = True
     elif user.id in DEMONS:
-        text += "\n\nRias's servant [Devil]."
+        text += "\n\n*Devil*"
         disaster_level_present = True
     elif user.id in TIGERS:
-        text += "\n\Oh my!, you are quite strong!."
+        text += "\n\*Knight*"
         disaster_level_present = True
     elif user.id in WOLVES:
-        text += "\n\nLow rank devil."
+        text += "\n\n*Rook*"
         disaster_level_present = True
 
     if disaster_level_present:
-        text += ' [<a href="https://t.me/akenojoinandbanlogs/13">?</a>]'.format(
+        text += ' [<a href="https://t.me/akenoupdates/2">?</a>]'.format(
             bot.username)
 
     try:
@@ -479,7 +479,7 @@ def set_about_bio(update: Update, context: CallbackContext):
                     "Bio needs to be under {} characters! You tried to set {}."
                     .format(MAX_MESSAGE_LENGTH // 4, len(bio[1])))
     else:
-        message.reply_text("Reply to someone to set their bio!")
+        message.reply_text("➣Reply to someone to set their bio!")
 
 
 def __user_info__(user_id):
@@ -487,9 +487,9 @@ def __user_info__(user_id):
     me = html.escape(sql.get_user_me_info(user_id) or "")
     result = ""
     if me:
-        result += f"<b>About user:</b>\n{me}\n"
+        result += f"<b>➣ About user:</b>\n{me}\n"
     if bio:
-        result += f"<b>What others say:</b>\n{bio}\n"
+        result += f"<b>➣ What others say:</b>\n{bio}\n"
     result = result.strip("\n")
     return result
 

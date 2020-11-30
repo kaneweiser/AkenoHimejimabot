@@ -236,6 +236,8 @@ __help__ = """
  • `/wall`*:* Usage- /wall <wallpaper name>. fetches wallpaper using wall alphacoders api.
 """
 ARA_HANDLER = DisableAbleCommandHandler("ara", ara)
+ARA_REGEX_HANDLER = DisableAbleMessageHandler(
+    Filters.regex(r"^Ara(.*)$"), ara, friendly="ara")
 KILL_HANDLER = DisableAbleCommandHandler("kill", kill)
 SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize)
 RUNS_HANDLER = DisableAbleCommandHandler("runs", runs)
@@ -250,6 +252,7 @@ DECIDE_HANDLER = DisableAbleCommandHandler("decide", decide)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table)
 
 dispatcher.add_handler(ARA_HANDLER)
+dispatcher.add_handler(ARA_REGEX_HANDLER)
 dispatcher.add_handler(KILL_HANDLER)
 dispatcher.add_handler(SANITIZE_HANDLER)
 dispatcher.add_handler(RUNS_HANDLER)

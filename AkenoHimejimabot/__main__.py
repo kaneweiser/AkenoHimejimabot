@@ -67,7 +67,6 @@ HELP_STRINGS = """
 {}
 
 And the following:
-https://telegra.ph/file/549584eb655cc9c60e53e.jpg
 """.format(
     dispatcher.bot.first_name, ""
     if not ALLOW_EXCL else "\nAll commands can either be used with / or !.\n")

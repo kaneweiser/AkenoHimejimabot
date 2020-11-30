@@ -127,7 +127,7 @@ def get_id(update: Update, context: CallbackContext):
             user2 = message.reply_to_message.forward_from
 
             msg.reply_text(
-                f"<b>➢Telegram ID:</b>,"
+                f"<b>Telegram ID:</b>,"
                 f"• {html.escape(user2.first_name)} - <code>{user2.id}</code>.\n"
                 f"• {html.escape(user1.first_name)} - <code>{user1.id}</code>.",
                 parse_mode=ParseMode.HTML)
@@ -168,20 +168,20 @@ async def group_info(event) -> None:
             "Can't for some reason, maybe it is a private one or that I am banned there."
         )
         return
-    msg = f"➢**ID**: `{entity.id}`"
-    msg += f"\n➢**Title**: `{entity.title}`"
-    msg += f"\n➢**Datacenter**: `{entity.photo.dc_id}`"
-    msg += f"\n➢**Video PFP**: `{entity.photo.has_video}`"
-    msg += f"\n➢**Supergroup**: `{entity.megagroup}`"
-    msg += f"\n➢**Restricted**: `{entity.restricted}`"
-    msg += f"\n➢**Scam**: `{entity.scam}`"
-    msg += f"\n➢**Slowmode**: `{entity.slowmode_enabled}`"
+    msg = f"**ID**: `{entity.id}`"
+    msg += f"\n**Title**: `{entity.title}`"
+    msg += f"\n**Datacenter**: `{entity.photo.dc_id}`"
+    msg += f"\n**Video PFP**: `{entity.photo.has_video}`"
+    msg += f"\n**Supergroup**: `{entity.megagroup}`"
+    msg += f"\n**Restricted**: `{entity.restricted}`"
+    msg += f"\n**Scam**: `{entity.scam}`"
+    msg += f"\n**Slowmode**: `{entity.slowmode_enabled}`"
     if entity.username:
-        msg += f"\n➢**Username**: {entity.username}"
-    msg += "\n\n➢**Member Stats:**"
-    msg += f"\n➢`Admins:` `{len(totallist)}`"
-    msg += f"\n➢`Users`: `{totallist.total}`"
-    msg += "\n\n➢**Admins List:**"
+        msg += f"\n**Username**: {entity.username}"
+    msg += "\n\n**Member Stats:**"
+    msg += f"\n`Admins:` `{len(totallist)}`"
+    msg += f"\n`Users`: `{totallist.total}`"
+    msg += "\n\n**Admins List:**"
     for x in totallist:
         msg += f"\n• [{x.id}](tg://user?id={x.id})"
     msg += f"\n\n**Description**:\n`{ch_full.full_chat.about}`"
@@ -227,7 +227,7 @@ def info(update: Update, context: CallbackContext):
     rep = message.reply_text(
         "<code>Ara Ara! fetching user info. . .</code>", parse_mode=ParseMode.HTML)
 
-    text = (f"🦋 <b>Heres what I found!:</b> 🦋\n"
+    text = (f"🦋<b>Heres what I found!:</b> 🦋\n"
             f"🦋ID: <code>{user.id}</code>\n"
             f"🦋First Name: {html.escape(user.first_name)}")
 
@@ -272,10 +272,10 @@ def info(update: Update, context: CallbackContext):
     disaster_level_present = False
 
     if user.id == OWNER_ID:
-        text += "\n\n👑 President Rias 👑."
+        text += "\n\n👑 President Rias 👑"
         disaster_level_present = True
     elif user.id in DEV_USERS:
-        text += "\n\n*OCR member*"
+        text += "\n\n**OCR member**"
         disaster_level_present = True
     elif user.id in DRAGONS:
         text += "\n\n*Dragon*"

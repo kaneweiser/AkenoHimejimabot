@@ -65,6 +65,7 @@ HELP_STRINGS = """
  🦋 /donate: information on how to donate!
  🦋 /settings: will send you your settings for all supported modules.
 {}
+https://telegra.ph/file/549584eb655cc9c60e53e.jpg
 And the following:
 """.format(
     dispatcher.bot.first_name, ""

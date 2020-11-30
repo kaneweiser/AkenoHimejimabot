@@ -272,7 +272,7 @@ def info(update: Update, context: CallbackContext):
     disaster_level_present = False
 
     if user.id == OWNER_ID:
-        text += "\n\n👑 *President Rias* 👑."
+        text += "\n\n👑 President Rias 👑."
         disaster_level_present = True
     elif user.id in DEV_USERS:
         text += "\n\n*OCR member*"

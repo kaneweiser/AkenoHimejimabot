@@ -72,8 +72,34 @@ def check_message(context: CallbackContext, message):
     reply_msg = message.reply_to_message
     if message.text.lower() == "akeno":
         return True
-    if message.text.lower() == "queen":
+    if message.text.lower() == "hi":
         return True
+    if message.text.lower() == "hello":
+        return True
+    if message.text.lower() == "Ohayo":
+        return True
+    if message.text.lower() == "hii":
+        return True
+    if message.text.lower() == "hiii":
+        return True
+    if message.text.lower() == "okay":
+        return True
+    if message.text.lower() == "morning":
+        return True
+    if message.text.lower() == "bye":
+        return True
+    if message.text.lower() == "lol":
+        return True
+    if message.text.lower() == "lmao":
+        return True
+    if message.text.lower() == "xd":
+        return True
+    if message.text.lower() == "kek":
+        return True
+    if message.text.lower() == "hmm":
+        return True
+    if message.text.lower() == "hm":
+        return True  
     if reply_msg:
         if reply_msg.from_user.id == context.bot.get_me().id:
             return True

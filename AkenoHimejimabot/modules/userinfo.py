@@ -275,19 +275,19 @@ def info(update: Update, context: CallbackContext):
         text += "\n\n👑 President Rias 👑"
         disaster_level_present = True
     elif user.id in DEV_USERS:
-        text += "\n\n**OCR member**"
+        text += "\n\nOCR member"
         disaster_level_present = True
     elif user.id in DRAGONS:
-        text += "\n\n*Dragon*"
+        text += "\n\nDragon"
         disaster_level_present = True
     elif user.id in DEMONS:
-        text += "\n\n*Devil*"
+        text += "\n\nDevil"
         disaster_level_present = True
     elif user.id in TIGERS:
-        text += "\n\*Knight*"
+        text += "\n\Knight"
         disaster_level_present = True
     elif user.id in WOLVES:
-        text += "\n\n*Rook*"
+        text += "\n\nRook"
         disaster_level_present = True
 
     if disaster_level_present:

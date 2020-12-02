@@ -34,3 +34,4 @@ dnspython
 spotdl
 gtts
 pandas
+TTFont

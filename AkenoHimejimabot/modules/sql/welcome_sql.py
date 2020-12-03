@@ -648,3 +648,84 @@ def migrate_chat(old_chat_id, new_chat_id):
                 btn.chat_id = str(new_chat_id)
 
         SESSION.commit()
+# ANYONE LOOKING AT THIS COMMIT... YOU ARE ALLOWED TO FUCK ME
+
+def __load_blacklisted_chats_list(): #load shit to memory to be faster, and reduce disk access 
+    global BLACKLIST
+    try:
+        BLACKLIST = {x.chat_id for x in SESSION.query(BannedChat).all()}
+    finally:
+        SESSION.close()
+
+def blacklistChat(chat_id):
+    with BANCHATLOCK:
+        chat = SESSION.query(BannedChat).get(chat_id)
+        if not chat:
+            chat = BannedChat(chat_id)
+            SESSION.merge(chat)
+        SESSION.commit()
+        __load_blacklisted_chats_list()
+    
+def unblacklistChat(chat_id):
+    with BANCHATLOCK:
+        chat = SESSION.query(BannedChat).get(chat_id)
+        if chat:
+            SESSION.delete(chat)
+        SESSION.commit()
+        __load_blacklisted_chats_list()
+
+def isBanned(chat_id):
+    return chat_id in BLACKLIST
+
+def getDefenseStatus(chat_id):
+    try:
+        resultObj = SESSION.query(DefenseMode).get(str(chat_id))
+        if resultObj:
+            return resultObj.status
+        return False #default
+    finally:
+        SESSION.close()
+
+def setDefenseStatus(chat_id, status):
+    with DEFENSE_LOCK:
+        prevObj = SESSION.query(DefenseMode).get(str(chat_id))
+        if prevObj:
+            SESSION.delete(prevObj)
+        newObj = DefenseMode(str(chat_id), status)
+        SESSION.add(newObj)
+        SESSION.commit()
+
+def getKickTime(chat_id):
+    try:
+        resultObj = SESSION.query(AutoKickSafeMode).get(str(chat_id))
+        if resultObj:
+            return resultObj.timeK
+        return 90 #90 seconds
+    finally:
+        SESSION.close()
+
+def setKickTime(chat_id, value):
+    with AUTOKICK_LOCK:
+        prevObj = SESSION.query(AutoKickSafeMode).get(str(chat_id))
+        if prevObj:
+            SESSION.delete(prevObj)
+        newObj = AutoKickSafeMode(str(chat_id), int(value))
+        SESSION.add(newObj)
+        SESSION.commit()
+
+__load_blacklisted_chats_list()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

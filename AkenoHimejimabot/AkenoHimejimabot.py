@@ -2,7 +2,7 @@ from telethon import events
 from AkenoHimejimabot import telethn
 
 """Triggers start command in pm and in groupchats"""
-def AkenoHimejimaChatbot(**args):
+def AkenoHimejimabot(**args):
     """New message."""
     pattern = args.get('pattern', None)
     r_pattern = r'^[/!]'

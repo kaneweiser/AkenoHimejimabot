@@ -291,6 +291,12 @@ class CombotCASStatus(BASE):
     status = Column(Boolean, default=True)
     autoban = Column(Boolean, default=False)
 
+class BannedChat(BASE):
+    __tablename__ = "chat_blacklists"
+    chat_id = Column(String(14), primary_key=True)
+    
+    def __init__(self, chat_id):
+        self.chat_id = str(chat_id) #chat_id is int, make sure it is string
     
 class WelcomeMuteUsers(BASE):
     __tablename__ = "human_checks"

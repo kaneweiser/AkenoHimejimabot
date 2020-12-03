@@ -291,12 +291,6 @@ class CombotCASStatus(BASE):
     status = Column(Boolean, default=True)
     autoban = Column(Boolean, default=False)
 
-class BannedChat(BASE):
-    __tablename__ = "chat_blacklists"
-    chat_id = Column(String(14), primary_key=True)
-    
-    def __init__(self, chat_id):
-        self.chat_id = str(chat_id) #chat_id is int, make sure it is string
     
 class WelcomeMuteUsers(BASE):
     __tablename__ = "human_checks"
@@ -656,33 +650,6 @@ def migrate_chat(old_chat_id, new_chat_id):
         SESSION.commit()
 # ANYONE LOOKING AT THIS COMMIT... YOU ARE ALLOWED TO FUCK ME
 
-def __load_blacklisted_chats_list(): #load shit to memory to be faster, and reduce disk access 
-    global BLACKLIST
-    try:
-        BLACKLIST = {x.chat_id for x in SESSION.query(BannedChat).all()}
-    finally:
-        SESSION.close()
-
-def blacklistChat(chat_id):
-    with BANCHATLOCK:
-        chat = SESSION.query(BannedChat).get(chat_id)
-        if not chat:
-            chat = BannedChat(chat_id)
-            SESSION.merge(chat)
-        SESSION.commit()
-        __load_blacklisted_chats_list()
-    
-def unblacklistChat(chat_id):
-    with BANCHATLOCK:
-        chat = SESSION.query(BannedChat).get(chat_id)
-        if chat:
-            SESSION.delete(chat)
-        SESSION.commit()
-        __load_blacklisted_chats_list()
-
-def isBanned(chat_id):
-    return chat_id in BLACKLIST
-
 def getDefenseStatus(chat_id):
     try:
         resultObj = SESSION.query(DefenseMode).get(str(chat_id))
@@ -719,7 +686,6 @@ def setKickTime(chat_id, value):
         SESSION.add(newObj)
         SESSION.commit()
 
-__load_blacklisted_chats_list()
 
 
 

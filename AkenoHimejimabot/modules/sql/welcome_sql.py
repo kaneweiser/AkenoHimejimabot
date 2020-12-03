@@ -292,6 +292,25 @@ class CombotCASStatus(BASE):
     autoban = Column(Boolean, default=False)
 
     
+class DefenseMode(BASE):
+    __tablename__ = "defense_mode"
+    chat_id = Column(String(14), primary_key=True)
+    status = Column(Boolean, default=False)
+    
+    def __init__(self, chat_id, status):
+        self.chat_id = str(chat_id)
+        self.status = status
+
+        
+class AutoKickSafeMode(BASE):
+    __tablename__ = "autokicks_safemode"
+    chat_id = Column(String(14), primary_key=True)
+    timeK = Column(Integer, default=90)
+    
+    def __init__(self, chat_id, timeK):
+        self.chat_id = str(chat_id)
+        self.timeK = timeK
+        
 class WelcomeMuteUsers(BASE):
     __tablename__ = "human_checks"
     user_id = Column(Integer, primary_key=True)
@@ -323,7 +342,8 @@ WelcomeMute.__table__.create(checkfirst=True)
 WelcomeMuteUsers.__table__.create(checkfirst=True)
 CleanServiceSetting.__table__.create(checkfirst=True)
 CombotCASStatus.__table__.create(checkfirst=True)
-
+DefenseMode.__table__.create(checkfirst=True)
+AutoKickSafeMode.__table__.create(checkfirst=True)
 
 INSERTION_LOCK = threading.RLock()
 WELC_BTN_LOCK = threading.RLock()
@@ -331,6 +351,8 @@ LEAVE_BTN_LOCK = threading.RLock()
 WM_LOCK = threading.RLock()
 CS_LOCK = threading.RLock()
 CAS_LOCK = threading.RLock()
+DEFENSE_LOCK = threading.RLock()
+AUTOKICK_LOCK = threading.RLock()
 
 def welcome_mutes(chat_id):
     try:

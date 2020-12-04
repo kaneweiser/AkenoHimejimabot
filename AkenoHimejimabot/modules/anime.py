@@ -73,6 +73,7 @@ query ($id: Int) {
           english
           native
         }
+        siteUrl
      }
 }
 """
@@ -172,7 +173,9 @@ def airing(update: Update, context: CallbackContext):
             'query': airing_query,
             'variables': variables
         }).json()['data']['Media']
-    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*ID*: `{response['id']}`"
+    info = response.get('siteUrl')
+    image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
+    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*ID*: `{response['id']}`[⁠ ⁠]({image})"
     if response['nextAiringEpisode']:
         time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
         time = t(time)
@@ -221,7 +224,7 @@ def anime(update: Update, context: CallbackContext):
         description = json.get('description', 'N/A').replace('<i>', '').replace(
             '</i>', '').replace('<br>', '')
         msg += shorten(description, info)
-        image = json.get('bannerImage', None)
+        image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
         if trailer:
             buttons = [[
                 InlineKeyboardButton("More Info", url=info),

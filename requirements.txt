@@ -34,3 +34,5 @@ dnspython
 spotdl
 gtts
 pandas
+fontTools
+

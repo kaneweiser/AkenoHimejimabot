@@ -1,4 +1,4 @@
-# module credits:- https://github.com/Dank-del
+
 # This module is kanged from:- https://github.com/Dank-del/Chizuru
 # lewd.py
 

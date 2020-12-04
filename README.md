@@ -11,7 +11,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v3/open-source-200x33.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
 
-🦋 A modular Telegram Python bot made with [Saitama](https://github.com/AnimeKaizoku/AkenoHimejimabot) as a base. 
+🦋 A modular Telegram Python bot made with [Saitama](https://github.com/AnimeKaizoku/SaitamaRobot) as a base. 
 
 
 🦋 Can be found on telegram as [AkenoHimejimaChatbot](https://t.me/AkenoHimejimaChatbot).
@@ -22,7 +22,7 @@
 ## How to setup/deploy.
 
 ### Read these notes carefully before proceeding 
-[Check this first. All instructions are here](https://github.com/AnimeKaizoku/AkenoHimejimabot/blob/master/README.md)
+[Check this first. All instructions are here](https://github.com/AnimeKaizoku/SaitamaRobot/blob/master/README.md)
  - Your code must be open source and a link to your fork's repository must be there in the start reply of the bot.
 
 
@@ -36,7 +36,7 @@ REMEMBER: Turn on worker dyno (Don't worry It's free :D) & Webhook
 Now send the bot /start, If it doesn't respond go to https://dashboard.heroku.com/apps/(app-name)/settings and remove webhook and port.
 ```
 
-  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AnimeKaizoku/AkenoHimejimabot.git)
+  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AnimeKaizoku/SaitamaRobot.git)
 
 </details>  
 <details>
@@ -91,9 +91,9 @@ The following env variables are supported:
  - `URL`: The URL your webhook should connect to (only needed for webhook mode)
 
  - `DRAGONS`: A space-separated list of user_ids which should be considered sudo users
- - `DEMONS`: A space-separated list of user_ids which should be considered support users (can gban/ungban,
+ - `DEVILS`: A space-separated list of user_ids which should be considered support users (can gban/ungban,
  nothing else)
- - `WOLVES`: A space-separated list of user_ids which should be considered whitelisted - they can't be banned.
+ - `ROOKS`: A space-separated list of user_ids which should be considered whitelisted - they can't be banned.
  - `DONATION_LINK`: Optional: link where you would like to receive donations.
  - `CERT_PATH`: Path to your webhook certificate
  - `PORT`: Port to use for your webhooks
@@ -200,7 +200,7 @@ You can use [nssm](https://nssm.cc/usage) to install the bot as service on windo
 Make sure to edit the start and restart bats to your needs. 
 Note: the restart bat requires that User account control be disabled.
 
-For queries or any issues regarding the bot please open an issue ticket or visit us at [One Punch Support](https://t.me/OnePunchSupport)
+
 ## How to setup on Heroku [Will deploy saitama]
 For starters click on this button 
 

@@ -6,6 +6,7 @@ import os
 import AkenoHimejimabot.modules.sql.nsfw_sql as sql
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram import ParseMode
+from telegram.utils.helpers import mention_html, mention_markdown, escape_markdown
 from telegram.ext import CommandHandler, run_async, CallbackContext
 from telegram.error import BadRequest, RetryAfter, Unauthorized
 from AkenoHimejimabot.modules.helper_funcs.chat_status import user_admin
@@ -84,9 +85,10 @@ def neko(update, context):
 @run_async
 def feet(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "feet"
     msg.reply_photo(nekos.img(target))
@@ -94,9 +96,10 @@ def feet(update, context):
 @run_async
 def yuri(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "yuri"
     msg.reply_photo(nekos.img(target))
@@ -104,9 +107,10 @@ def yuri(update, context):
 @run_async
 def trap(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "trap"
     msg.reply_photo(nekos.img(target))
@@ -114,9 +118,10 @@ def trap(update, context):
 @run_async
 def futanari(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "futanari"
     msg.reply_photo(nekos.img(target))
@@ -124,9 +129,10 @@ def futanari(update, context):
 @run_async
 def hololewd(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "hololewd"
     msg.reply_photo(nekos.img(target))
@@ -134,9 +140,10 @@ def hololewd(update, context):
 @run_async
 def lewdkemo(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "lewdkemo"
     msg.reply_photo(nekos.img(target))
@@ -145,9 +152,10 @@ def lewdkemo(update, context):
 @run_async
 def sologif(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "solog"
     msg.reply_video(nekos.img(target))
@@ -156,9 +164,10 @@ def sologif(update, context):
 @run_async
 def feetgif(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "feetg"
     msg.reply_video(nekos.img(target))
@@ -166,9 +175,10 @@ def feetgif(update, context):
 @run_async
 def cumgif(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "cum"
     msg.reply_video(nekos.img(target))
@@ -176,9 +186,10 @@ def cumgif(update, context):
 @run_async
 def erokemo(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "erokemo"
     msg.reply_photo(nekos.img(target))
@@ -186,9 +197,10 @@ def erokemo(update, context):
 @run_async
 def lesbian(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "les"
     msg.reply_video(nekos.img(target))
@@ -202,19 +214,21 @@ def wallpaper(update, context):
 @run_async
 def lewdk(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
-   msg = update.effective_message
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
+    msg = update.effective_message
     target = "lewdk"
     msg.reply_photo(nekos.img(target))
 
 @run_async
 def ngif(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "ngif"
     msg.reply_video(nekos.img(target))
@@ -229,9 +243,10 @@ def tickle(update, context):
 @run_async
 def lewd(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "lewd"
     msg.reply_photo(nekos.img(target))
@@ -247,9 +262,10 @@ def feed(update, context):
 @run_async
 def eroyuri(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "eroyuri"
     msg.reply_photo(nekos.img(target))
@@ -257,9 +273,10 @@ def eroyuri(update, context):
 @run_async
 def eron(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "eron"
     msg.reply_photo(nekos.img(target))
@@ -267,9 +284,10 @@ def eron(update, context):
 @run_async
 def cum(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "cum_jpg"
     msg.reply_photo(nekos.img(target))
@@ -277,9 +295,10 @@ def cum(update, context):
 @run_async
 def bjgif(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "bj"
     msg.reply_video(nekos.img(target))
@@ -287,9 +306,10 @@ def bjgif(update, context):
 @run_async
 def bj(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "blowjob"
     msg.reply_photo(nekos.img(target))
@@ -297,9 +317,10 @@ def bj(update, context):
 @run_async
 def nekonsfw(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "nsfw_neko_gif"
     msg.reply_video(nekos.img(target))
@@ -307,9 +328,10 @@ def nekonsfw(update, context):
 @run_async
 def solo(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "solo"
     msg.reply_photo(nekos.img(target))
@@ -317,9 +339,10 @@ def solo(update, context):
 @run_async
 def kemonomimi(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "kemonomimi"
     msg.reply_photo(nekos.img(target))
@@ -327,9 +350,10 @@ def kemonomimi(update, context):
 @run_async
 def avatarlewd(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "nsfw_avatar"
     with open("temp.png", "wb") as f:
@@ -342,12 +366,13 @@ def avatarlewd(update, context):
 @run_async
 def gasm(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "gasm"
-   with open("temp.png", "wb") as f:
+    with open("temp.png", "wb") as f:
         f.write(requests.get(nekos.img(target)).content)
     img = Image.open("temp.png")
     img.save("temp.webp", "webp")
@@ -365,9 +390,10 @@ def poke(update, context):
 @run_async
 def anal(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "anal"
     msg.reply_video(nekos.img(target))
@@ -375,9 +401,10 @@ def anal(update, context):
 @run_async
 def hentai(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "hentai"
     msg.reply_photo(nekos.img(target))
@@ -396,9 +423,10 @@ def avatar(update, context):
 @run_async
 def erofeet(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "erofeet"
     msg.reply_photo(nekos.img(target))
@@ -412,9 +440,10 @@ def holo(update, context):
 @run_async
 def keta(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = 'keta'
     if not target:
@@ -425,9 +454,10 @@ def keta(update, context):
 @run_async
 def pussygif(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "pussy"
     msg.reply_video(nekos.img(target))
@@ -435,9 +465,10 @@ def pussygif(update, context):
 @run_async
 def tits(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "tits"
     msg.reply_photo(nekos.img(target))
@@ -445,9 +476,10 @@ def tits(update, context):
 @run_async
 def holoero(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "holoero"
     msg.reply_photo(nekos.img(target))
@@ -455,9 +487,10 @@ def holoero(update, context):
 @run_async
 def pussy(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "pussy_jpg"
     msg.reply_photo(nekos.img(target))
@@ -465,9 +498,10 @@ def pussy(update, context):
 @run_async
 def hentaigif(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "random_hentai_gif"
     msg.reply_video(nekos.img(target))
@@ -481,9 +515,10 @@ def classic(update, context):
 @run_async
 def kuni(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "kuni"
     msg.reply_video(nekos.img(target))
@@ -511,9 +546,10 @@ def kiss(update, context):
 @run_async
 def femdom(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "femdom"
     msg.reply_photo(nekos.img(target))
@@ -529,9 +565,10 @@ def hug(update, context):
 @run_async
 def erok(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "erok"
     msg.reply_photo(nekos.img(target))
@@ -540,9 +577,10 @@ def erok(update, context):
 @run_async
 def foxgirl(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "fox_girl"
     msg.reply_photo(nekos.img(target))
@@ -551,9 +589,10 @@ def foxgirl(update, context):
 @run_async
 def titsgif(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "boobs"
     msg.reply_video(nekos.img(target))
@@ -562,9 +601,10 @@ def titsgif(update, context):
 @run_async
 def ero(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     target = "ero"
     msg.reply_photo(nekos.img(target))
@@ -587,13 +627,14 @@ def baka(update, context):
 @run_async
 def dva(update, context):
     chat_id = update.effective_chat.id
-    is_nsfw = sql.is_nsfw(chat_id)
-    if not is_nsfw:
-        return
+    if not update.effective_message.chat.type == "private":
+        is_nsfw = sql.is_nsfw(chat_id)
+        if not is_nsfw:
+            return
     msg = update.effective_message
     nsfw = requests.get("https://api.computerfreaker.cf/v1/dva").json()
     url = nsfw.get("url")
-     do shit with url if you want to
+    # do shit with url if you want to
     if not url:
         msg.reply_text("No URL was received from the API!")
         return

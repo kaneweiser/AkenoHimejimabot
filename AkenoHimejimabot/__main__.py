@@ -201,7 +201,7 @@ def start(update: Update, context: CallbackContext):
                      [
                          InlineKeyboardButton(
                              text="🦋 Repo 🦋",
-                             url=f"https://github.com/RiasGr3m0ry/AkenoHimejimabot"),
+                             url=f"https://github.com/riasugremory/AkenoHimejimabot"),
                          InlineKeyboardButton(
                              text="🦋 Support 🦋",
                              url=f"https://t.me/{SUPPORT_CHAT}"),

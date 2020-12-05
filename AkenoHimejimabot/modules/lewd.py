@@ -1,22 +1,77 @@
-
-# This module is kanged from:- https://github.com/Dank-del/Chizuru
-# lewd.py
-
 import requests
 import nekos
 from PIL import Image
 import os
-
+import AkenoHimejimabot.modules.sql.nsfw_sql as sql
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram import ParseMode
-from telegram.ext import CommandHandler, run_async
-
+from telegram.ext import CommandHandler, run_async, CallbackContext
+from telegram.error import BadRequest, RetryAfter, Unauthorized
+from AkenoHimejimabot.modules.helper_funcs.chat_status import user_admin
+from AkenoHimejimabot.modules.log_channel import gloggable
 from AkenoHimejimabot import dispatcher, updater
+from AkenoHimejimabot.modules.helper_funcs.filters import CustomFilters
 
 
-def is_user_in_chat(chat: Chat, user_id: int) -> bool:
-    member = chat.get_member(user_id)
-    return member.status not in ("left", "kicked")
+@run_async
+@user_admin
+@gloggable
+def add_nsfw(update: Update, context: CallbackContext):
+    chat = update.effective_chat
+    msg = update.effective_message
+    user = update.effective_user #Remodified by @EverythingSuckz
+    is_nsfw = sql.is_nsfw(chat.id)
+    if not is_nsfw:
+        sql.set_nsfw(chat.id)
+        msg.reply_text("Activated NSFW Mode!")
+        message = (
+            f"<b>{html.escape(chat.title)}:</b>\n"
+            f"#ACTIVATED_NSFW\n"
+            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+        )
+        return message
+    else:
+        msg.reply_text("NSFW Mode is already Activated for this chat!")
+        return ""
+
+
+@run_async
+@user_admin
+@gloggable
+def rem_nsfw(update: Update, context: CallbackContext):
+    msg = update.effective_message
+    chat = update.effective_chat
+    user = update.effective_user
+    is_nsfw = sql.is_nsfw(chat.id)
+    if not is_nsfw:
+        msg.reply_text("NSFW Mode is already Deactivated")
+        return ""
+    else:
+        sql.rem_nsfw(chat.id)
+        msg.reply_text("Rolled Back to SFW Mode!")
+        message = (
+            f"<b>{html.escape(chat.title)}:</b>\n"
+            f"#DEACTIVATED_NSFW\n"
+            f"<b>Admin:</b> {mention_html(user.id, html.escape(user.first_name))}\n"
+        )
+        return message
+
+@run_async
+def list_nsfw_chats(update: Update, context: CallbackContext):
+    chats = sql.get_all_nsfw_chats()
+    text = "<b>NSFW Activated Chats</b>\n"
+    for chat in chats:
+        try:
+            x = context.bot.get_chat(int(*chat))
+            name = x.title if x.title else x.first_name
+            text += f"• <code>{name}</code>\n"
+        except BadRequest:
+            sql.rem_nsfw(*chat)
+        except Unauthorized:
+            sql.rem_nsfw(*chat)
+        except RetryAfter as e:
+            sleep(e.retry_after)
+    update.effective_message.reply_text(text, parse_mode="HTML")
 
 
 @run_async
@@ -68,11 +123,15 @@ def neko(update, context):
 #    msg.reply_photo(nekos.img(target))
 
 
-#@run_async
-#def sologif(update, context):
-#    msg = update.effective_message
-#    target = "solog"
-#    msg.reply_video(nekos.img(target))
+@run_async
+def sologif(update, context):
+    chat_id = update.effective_chat.id
+    is_nsfw = sql.is_nsfw(chat_id)
+    if not is_nsfw:
+        return
+    msg = update.effective_message
+    target = "solog"
+    msg.reply_video(nekos.img(target))
 
 
 #@run_async
@@ -416,7 +475,10 @@ def baka(update, context):
 #        return
 #    msg.reply_photo(url)
 
-
+ADD_NSFW_HANDLER = CommandHandler("addnsfw", add_nsfw)
+REMOVE_NSFW_HANDLER = CommandHandler("rmnsfw", rem_nsfw)
+LIST_NSFW_CHATS_HANDLER = CommandHandler(
+    "nsfwchats", list_nsfw_chats, filters=CustomFilters.dev_filter)
 #LEWDKEMO_HANDLER = CommandHandler("lewdkemo", lewdkemo)
 NEKO_HANDLER = CommandHandler("neko", neko)
 #FEET_HANDLER = CommandHandler("feet", feet)
@@ -424,7 +486,7 @@ NEKO_HANDLER = CommandHandler("neko", neko)
 #TRAP_HANDLER = CommandHandler("trap", trap)
 #FUTANARI_HANDLER = CommandHandler("futanari", futanari)
 #HOLOLEWD_HANDLER = CommandHandler("hololewd", hololewd)
-#SOLOGIF_HANDLER = CommandHandler("sologif", sologif)
+SOLOGIF_HANDLER = CommandHandler("sologif", sologif)
 #CUMGIF_HANDLER = CommandHandler("cumgif", cumgif)
 #EROKEMO_HANDLER = CommandHandler("erokemo", erokemo)
 #LESBIAN_HANDLER = CommandHandler("lesbian", lesbian)
@@ -470,6 +532,10 @@ SMUG_HANDLER = CommandHandler("smug", smug)
 BAKA_HANDLER = CommandHandler("baka", baka)
 #DVA_HANDLER = CommandHandler("dva", dva)
 
+
+dispatcher.add_handler(ADD_NSFW_HANDLER)
+dispatcher.add_handler(REMOVE_NSFW_HANDLER)
+dispatcher.add_handler(LIST_NSFW_CHATS_HANDLER)
 #dispatcher.add_handler(LEWDKEMO_HANDLER)
 dispatcher.add_handler(NEKO_HANDLER)
 #dispatcher.add_handler(FEET_HANDLER)
@@ -477,7 +543,7 @@ dispatcher.add_handler(NEKO_HANDLER)
 #dispatcher.add_handler(TRAP_HANDLER)
 #dispatcher.add_handler(FUTANARI_HANDLER)
 #dispatcher.add_handler(HOLOLEWD_HANDLER)
-#dispatcher.add_handler(SOLOGIF_HANDLER)
+dispatcher.add_handler(SOLOGIF_HANDLER)
 #dispatcher.add_handler(CUMGIF_HANDLER)
 #dispatcher.add_handler(EROKEMO_HANDLER)
 #dispatcher.add_handler(LESBIAN_HANDLER)
@@ -524,7 +590,10 @@ dispatcher.add_handler(BAKA_HANDLER)
 #dispatcher.add_handler(DVA_HANDLER)
 
 __handlers__ = [
-    #NEKO_HANDLER,
+    ADD_NSFW_HANDLER,
+    REMOVE_NSFW_HANDLER,
+    LIST_NSFW_CHATS_HANDLER,
+    NEKO_HANDLER,
     #FEET_HANDLER,
     #YURI_HANDLER,
     #TRAP_HANDLER,

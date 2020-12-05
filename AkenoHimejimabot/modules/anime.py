@@ -49,6 +49,7 @@ airing_query = '''
     query ($id: Int,$search: String) {
       Media (id: $id, type: ANIME,search: $search) {
         id
+        siteUrl
         episodes
         title {
           romaji
@@ -165,7 +166,7 @@ def airing(update: Update, context: CallbackContext):
     search_str = message.text.split(' ', 1)
     if len(search_str) == 1:
         update.effective_message.reply_text(
-            'Tell Anime Name :) ( /airing <anime name>)')
+            '**Usage:** `/airing` <anime name>)')
         return
     variables = {'search': search_str[1]}
     response = requests.post(
@@ -174,7 +175,8 @@ def airing(update: Update, context: CallbackContext):
             'variables': variables
         }).json()['data']['Media']
     info = response.get('siteUrl')
-    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*ID*: `{response['id']}`"
+    image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
+    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*ID*: `{response['id']}`[⁠ ⁠]({image})"
     if response['nextAiringEpisode']:
         time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
         time = t(time)

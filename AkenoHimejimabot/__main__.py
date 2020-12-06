@@ -212,10 +212,9 @@ def start(update: Update, context: CallbackContext):
     else:
   
         update.effective_message.reply_video(
-                AKENOPINGIMG)
-        update.effective_message.reply_text(
-            "Ara Ara! \n<b>Queen in command! since:</b> <code>{}</code>".format(uptime),
-            parse_mode=ParseMode.HTML)
+                AKENOPINGIMG,        
+                caption="Ara Ara! \n<b>Queen in command! since:</b> <code>{}</code>".format(uptime),
+            parse_mode=ParseMode.HTML))
                     
           
 

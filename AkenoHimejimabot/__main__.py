@@ -56,7 +56,7 @@ def get_readable_time(seconds: int) -> str:
 PM_START_TEXT = """
 *Ara Ara...* {}, I am {}!
 It will be pleasure for me to serve your chat  🤍
-Also come to meet me at @AnimeRyuzoku !
+*Meet me at* @AnimeRyuzoku !
 """
 
 HELP_STRINGS = """
@@ -213,13 +213,8 @@ def start(update: Update, context: CallbackContext):
                              text="« «〘 Ryūzoku 〙» »",
                              url=f"https://t.me/AnimeRyuzoku"),
 
-                       ],
-                      [
-                         InlineKeyboardButton(
-                             text="♡ HELP ♡",
-                             callback_data="help_back"),
-
-                        ]
+                       ]
+                      
                     
                      ]))
     else:

@@ -813,12 +813,15 @@ __handlers__ = [
 ]
 
 __help__ = """
-  Module credits: [Dank-del](https://github.com/Dank-del/Chizuru/) ,
-  Also thanks to [EverythingSuckz](https://t.me/EverythingSuckz) for NSFW filter.
-    Usage:
-    /addnsfw : Enable NSFW mode
-    /rmnsfw : Disable NSFW mode
- Commands :   
+Module credits: [Dank-del](https://github.com/Dank-del/Chizuru/) ,
+Also thanks to [EverythingSuckz](https://t.me/EverythingSuckz) for NSFW filter.
+    
+Usage:
+    
+/addnsfw : Enable NSFW mode
+/rmnsfw : Disable NSFW mode
+ 
+Commands :   
  - /neko: Sends Random SFW Neko source Images.
  - /feet: Sends Random Anime Feet Images.
  - /yuri: Sends Random Yuri source Images.
